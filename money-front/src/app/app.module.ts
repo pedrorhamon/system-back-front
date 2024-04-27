@@ -25,6 +25,7 @@ import { LoginComponent } from './login/login.component';
     InputTextModule,
     PasswordModule,
     ButtonModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

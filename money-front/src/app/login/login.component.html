@@ -1,12 +1,14 @@
-<p>login works!</p>
 
-<div class="class">
-  <span class="pi pi-user " ></span>
-  <input type="text" pInputText placeholder="Usuário"  formControlName="text">
 
-  <span class="pi pi-lock"></span>
-  <p-password type="password" placeholder="Senha" [feedback]="false"></p-password>
+  <div class="login-container">
+    <h1>Login</h1>
+    <div class="login-input">
+      <input type="text" pInputText placeholder="Usuário"  formControlName="text">
+    </div>
 
-  <p-button label="Entrar"></p-button>
-</div>
+    <div class="login-input">
+      <p-password type="password" placeholder="Senha" [feedback]="false"></p-password>
+    </div>
 
+    <p-button label="Entrar"></p-button>
+  </div>
