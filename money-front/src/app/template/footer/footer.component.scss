@@ -1,0 +1,31 @@
+// .footer {
+//   position: fixed;
+//   bottom: 0;
+//   display: flex;
+//   justify-content: flex-end; /* Alinha o conteúdo no lado direito */
+// }
+
+// .footer > span {
+//   font-size: 1rem;
+//   font-family: sans-serif;
+//   text-align: right; /* Alinha o texto à direita dentro do span */
+// }
+
+// .footer {
+//   text-align: end; /* Alinha o conteúdo à direita */
+// }
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  right: 0; /* Alinha o conteúdo à direita */
+  display: flex;
+  flex-direction: column; /* Define a direção da flexão como coluna para mover o conteúdo para baixo */
+}
+
+.footer > span {
+  text-align: end; /* Alinha o texto à direita */
+  align-self: flex-end; /* Alinha o elemento à extremidade inferior do contêiner pai */
+  font-size: 1rem;
+  font-family: sans-serif;
+}

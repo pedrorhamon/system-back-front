@@ -1,0 +1,17 @@
+<!-- <div class="sidebar">
+  <p-sidebar >
+    <p icon="pi-home"></p>
+    <p icon="pi-home"></p>
+    <p icon="pi-home"></p>
+    <p icon="pi-home"></p>
+  </p-sidebar>
+</div> -->
+
+<div class="card flex justify-content-center">
+  <p-sidebar [(visible)]="sidebarVisible">
+    <ng-template pTemplate="header">Header Content</ng-template>
+    <ng-template pTemplate="content">Body Content</ng-template>
+    <ng-template pTemplate="footer">Footer Content</ng-template>
+  </p-sidebar>
+  <p-button (click)="sidebarVisible = true" icon="pi pi-arrow-right"></p-button>
+</div>
