@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonModule } from 'primeng/button';
+import { CalendarModule } from 'primeng/calendar';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { SidebarModule } from 'primeng/sidebar';
@@ -38,7 +39,8 @@ import { NavComponent } from './template/nav/nav.component';
     ButtonModule,
     SidebarModule,
     BrowserAnimationsModule,
-    ToolbarModule
+    ToolbarModule,
+    CalendarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

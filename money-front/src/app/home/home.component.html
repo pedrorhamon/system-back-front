@@ -16,18 +16,17 @@
     <br>
     <div class="p-col-12">
       <label style="display: block">Vencimento</label>
-      <input pInputText type="text" style="width: 95px">
-
+      <p-calendar formControlName="date" dateFormat="dd/mm/yy"></p-calendar>
       <label>até</label>
-      <input pInputText type="text" style="width: 95px">
+      <p-calendar formControlName="date" dateFormat="dd/mm/yy"></p-calendar>
     </div>
     <br>
     <div class="p-col-12">
       <button pButton type="submit" label="Pesquisar"></button>
     </div>
-
   </div>
 
+  <br>
   <div class="p-grid">
     <div class="p-col-12">
       <p-table [value]="lancamentos" [paginator]="true" [rows]="2"
