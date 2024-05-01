@@ -2,11 +2,16 @@ package com.starking.systemback.model;
 
 import java.io.Serializable;
 
+import org.hibernate.validator.constraints.br.CPF;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 /**
  * @author pedroRhamon
@@ -22,11 +27,20 @@ public class Usuario implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotNull
+	@NotBlank
 	private String name;
 	
+	@NotNull
+	@Email
 	private String email;
 	
+	@NotNull
 	private String senha;
+	
+	@NotNull
+	@CPF
+	private String cpf;
 	
 	private boolean isAtivo = true;
 
