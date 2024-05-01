@@ -8,6 +8,7 @@ import { PasswordModule } from 'primeng/password';
 import { SidebarModule } from 'primeng/sidebar';
 import { TableModule } from 'primeng/table';
 import { ToolbarModule } from 'primeng/toolbar';
+import { TooltipModule } from 'primeng/tooltip';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +18,7 @@ import { NovoUsuarioComponent } from './novo-usuario/novo-usuario.component';
 import { FooterComponent } from './template/footer/footer.component';
 import { HeaderComponent } from './template/header/header.component';
 import { NavComponent } from './template/nav/nav.component';
+import { UsuarioListComponent } from './usuario-list/usuario-list.component';
 
 
 
@@ -28,7 +30,8 @@ import { NavComponent } from './template/nav/nav.component';
     NovoUsuarioComponent,
     NavComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    UsuarioListComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,8 @@ import { NavComponent } from './template/nav/nav.component';
     SidebarModule,
     BrowserAnimationsModule,
     ToolbarModule,
-    CalendarModule
+    CalendarModule,
+    TooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

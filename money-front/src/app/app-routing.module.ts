@@ -7,10 +7,9 @@ import { NovoUsuarioComponent } from './novo-usuario/novo-usuario.component';
 import { NavComponent } from './template/nav/nav.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'novo', component: NovoUsuarioComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'nav', component: NavComponent },
+  { path: 'home', component: HomeComponent }
 ];
 
 @NgModule({
