@@ -4,7 +4,11 @@ import java.io.Serializable;
 
 import org.hibernate.validator.constraints.br.CPF;
 
+import com.starking.systemback.model.enums.PerfilEnum;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -43,5 +47,8 @@ public class Usuario implements Serializable{
 	private String cpf;
 	
 	private boolean isAtivo = true;
+	
+	@Enumerated(EnumType.STRING)
+	private PerfilEnum perfis;
 
 }
