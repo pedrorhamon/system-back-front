@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class NavComponent {
   sidebarVisible: boolean = false;
+  exibindoMenu: boolean = false;
 }
