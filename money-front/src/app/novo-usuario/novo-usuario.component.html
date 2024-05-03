@@ -10,18 +10,27 @@
         <label>Nome</label>
         <input pInputText type="text" placeholder="Digite seu Nome">
       </div>
+      <br>
       <div class="p-col-6 p-md-3 p-fluid">
         <label>Email</label>
         <input pInputText type="text" placeholder="Digite seu Email">
       </div>
+      <br>
       <div class="p-col-12 p-md-9 p-fluid">
         <label>Senha</label>
-        <input pInputText type="text" placeholder="Digite seu CPF">
+        <p-password formControlName="value" [feedback]="false" placeholder="Digite sua Senha"/>
       </div>
+      <br>
+      <div class="p-col-12 p-md-9 p-fluid">
+        <label>Repita sua Senha</label>
+        <p-password formControlName="value" [feedback]="false" placeholder="Repita sua Senha"/>
+      </div>
+      <br>
       <div class="p-col-12 p-md-3 p-fluid">
         <label>CPF</label>
         <input pInputText type="text" placeholder="Digite seu CPF">
       </div>
+      <br>
       <div class="p-col-12 p-md-6 p-fluid">
         <label>Perfil</label>
         <input pInputText type="text" >
