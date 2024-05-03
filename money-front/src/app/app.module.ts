@@ -6,6 +6,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { CheckboxModule } from 'primeng/checkbox';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { MultiSelectModule } from 'primeng/multiselect';
 import { PasswordModule } from 'primeng/password';
 import { SidebarModule } from 'primeng/sidebar';
 import { TableModule } from 'primeng/table';
@@ -48,7 +49,8 @@ import { UsuarioListComponent } from './usuario-list/usuario-list.component';
     CalendarModule,
     TooltipModule,
     InputTextareaModule,
-    CheckboxModule
+    CheckboxModule,
+    MultiSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -33,15 +33,18 @@
       <br>
       <div class="p-col-12 p-md-6 p-fluid">
         <label>Perfil</label>
-        <input pInputText type="text" >
+        <p-multiSelect
+        formControlName="selectedCities"
+        optionLabel="name"
+        placeholder="Selecione os Perfis"/>
       </div>
       <br>
       <div class="p-col-12 p-md-6 p-fluid">
         <p-checkbox
-        formControlName="city"
-        value="New York"
-        inputId="ny" />
-    <label for="ny">New York</label>
+        formControlName="ativo"
+        value="ativo"
+        inputId="ativo" />
+    <label for="ativo">Ativo</label>
       </div>
       <br>
       <!-- <div class="p-col-12 p-fluid">
