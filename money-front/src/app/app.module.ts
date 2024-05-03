@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
+import { CheckboxModule } from 'primeng/checkbox';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { PasswordModule } from 'primeng/password';
@@ -46,7 +47,8 @@ import { UsuarioListComponent } from './usuario-list/usuario-list.component';
     ToolbarModule,
     CalendarModule,
     TooltipModule,
-    InputTextareaModule
+    InputTextareaModule,
+    CheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
