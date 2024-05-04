@@ -36,7 +36,7 @@ public class UsuarioResponse {
 		this.name = entity.getName();
 		this.email = entity.getEmail();
 		this.cpf = entity.getCpf();
-		this.perfil = entity.getPerfis().toString();
+		this.perfil = entity.getPerfis().name();
 		this.isAtivo = entity.isAtivo();
 	}
 }
