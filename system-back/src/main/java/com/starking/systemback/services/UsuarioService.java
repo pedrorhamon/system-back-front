@@ -2,6 +2,8 @@ package com.starking.systemback.services;
 
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,6 +27,16 @@ public class UsuarioService {
 	
 	@Autowired
 	private PasswordEncoder encoder;
+	
+	@Transactional
+	public UsuarioResponse salvarUsuario(Usuario usuario) throws RegraNegocioException {
+		validarEmail(usuario.getEmail());
+		usuario.setCpf(usuario.getCpf());
+		usuario.setName(usuario.getName());
+		usuario.setPerfis(usuario.getPerfis());
+		criptografarSenha(usuario);
+		return  new UsuarioResponse(usuarioRepository.save(usuario));
+	}
 	
 	public Usuario autenticar(String email, String senha) throws ErroAutenticacao {
 		Optional<Usuario> usuario = this.usuarioRepository.findByEmail(email);
