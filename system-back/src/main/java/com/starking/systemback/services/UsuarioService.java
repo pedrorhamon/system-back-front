@@ -38,12 +38,21 @@ public class UsuarioService {
 		return  new UsuarioResponse(usuarioRepository.save(usuario));
 	}
 	
+	
+	public Page<UsuarioResponse> findAll(Pageable pageable) {
+		return usuarioRepository.findAll(pageable).map(UsuarioResponse::new);
+	}
+	
+	public Optional<UsuarioResponse> obterPorId(Long id) {
+		return this.usuarioRepository.findById(id).map(UsuarioResponse::new);
+	}
+	
 	public Usuario autenticar(String email, String senha) throws ErroAutenticacao {
 		Optional<Usuario> usuario = this.usuarioRepository.findByEmail(email);
 		this.autenticacaoSenha(senha, usuario);
 		return usuario.get();
 	}
-
+	
 	private void autenticacaoSenha(String senha, Optional<Usuario> usuario) throws ErroAutenticacao {
 		if(!usuario.isPresent()) {
 			throw new ErroAutenticacao(ConstantesUtils.USUARIO_NAO_ENCONTRADO);
@@ -52,10 +61,6 @@ public class UsuarioService {
 		if(!senhasBatem) {
 			throw new ErroAutenticacao(ConstantesUtils.SENHA_INVALIDA);
 		}
-	}
-	
-	public Page<UsuarioResponse> findAll(Pageable pageable) {
-		return usuarioRepository.findAll(pageable).map(UsuarioResponse::new);
 	}
 	
 	private void validarEmail(String email) throws RegraNegocioException {
@@ -69,9 +74,5 @@ public class UsuarioService {
 		String senha = usuario.getSenha();
 		String senhaCripto = encoder.encode(senha);
 		usuario.setSenha(senhaCripto);
-	}
-	
-	public Optional<UsuarioResponse> obterPorId(Long id) {
-		return this.usuarioRepository.findById(id).map(UsuarioResponse::new);
 	}
 }
