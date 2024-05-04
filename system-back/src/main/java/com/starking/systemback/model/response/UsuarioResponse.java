@@ -1,5 +1,7 @@
 package com.starking.systemback.model.response;
 
+import com.starking.systemback.model.Usuario;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -27,5 +29,14 @@ public class UsuarioResponse {
 		this.cpf = cpf;
 		this.isAtivo = isAtivo;
 		this.perfil = perfil;
+	}
+	
+	public UsuarioResponse(Usuario entity) {
+		this.id = entity.getId();
+		this.name = entity.getName();
+		this.email = entity.getEmail();
+		this.cpf = entity.getCpf();
+		this.perfil = entity.getPerfis().toString();
+		this.isAtivo = entity.isAtivo();
 	}
 }
