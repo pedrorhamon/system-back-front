@@ -1,5 +1,7 @@
 package com.starking.systemback.services;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -30,5 +32,9 @@ public class UsuarioService {
 		String senha = usuario.getSenha();
 		String senhaCripto = encoder.encode(senha);
 		usuario.setSenha(senhaCripto);
+	}
+	
+	public Optional<UsuarioResponse> obterPorId(Long id) {
+		return this.usuarioRepository.findById(id).map(UsuarioResponse::new);
 	}
 }
