@@ -8,9 +8,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.starking.systemback.RegraNegocioException;
 import com.starking.systemback.model.Usuario;
 import com.starking.systemback.model.response.UsuarioResponse;
 import com.starking.systemback.repositories.UsuarioRepository;
+import com.starking.systemback.utils.ConstantesUtils;
 
 /**
  * @author pedroRhamon
@@ -26,6 +28,13 @@ public class UsuarioService {
 	
 	public Page<UsuarioResponse> findAll(Pageable pageable) {
 		return usuarioRepository.findAll(pageable).map(UsuarioResponse::new);
+	}
+	
+	private void validarEmail(String email) throws RegraNegocioException {
+		boolean existe = this.usuarioRepository.existsByEmail(email);
+		if(existe) {
+			throw new RegraNegocioException(ConstantesUtils.USUARIO_CADASTRADO);
+		}
 	}
 	
 	private void criptografarSenha(Usuario usuario) {
