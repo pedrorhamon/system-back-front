@@ -6,6 +6,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.starking.systemback.model.response.UsuarioResponse;
@@ -22,15 +23,17 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @Service
 public class JwtService {
 	
+	@Value("${jwt.chave-assinatura}")
 	private String chaveAssinatura; 
 	
+	@Value("${jwt.expiracao}")
 	private String expiracao; 
 	
 	public String gerarToken(UsuarioResponse usuarioResponse) {
 		long exp = Long.valueOf(expiracao);
 		LocalDateTime dataHoraExpiracao = LocalDateTime.now().plusMinutes(exp);
 		Instant instant = dataHoraExpiracao.atZone( ZoneId.systemDefault() ).toInstant();
-		java.util.Date data = Date.from(instant);
+		Date data = Date.from(instant);
 		
 		String horaExpiracaoToken = dataHoraExpiracao.toLocalTime()
 				.format(DateTimeFormatter.ofPattern("HH:mm"));
@@ -63,7 +66,7 @@ public class JwtService {
 	
 	public boolean isTokenValido(String token) throws ExpiredJwtException {
 		Claims claims = obterClaims(token);
-		java.util.Date dataEx = claims.getExpiration();
+		Date dataEx = claims.getExpiration();
 		LocalDateTime dataExpiracao = dataEx.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
 		boolean dataHoraAtualIsAfterDataExpiracao = LocalDateTime.now().isAfter(dataExpiracao);
 		return !dataHoraAtualIsAfterDataExpiracao;
