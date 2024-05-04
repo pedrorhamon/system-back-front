@@ -26,9 +26,13 @@ public class UsuarioService {
 	@Autowired
 	private PasswordEncoder encoder;
 	
-	public Usuario autenticar(String email, String senha) {
+	public Usuario autenticar(String email, String senha) throws ErroAutenticacao {
 		Optional<Usuario> usuario = this.usuarioRepository.findByEmail(email);
-		
+		this.autenticacaoSenha(senha, usuario);
+		return usuario.get();
+	}
+
+	private void autenticacaoSenha(String senha, Optional<Usuario> usuario) throws ErroAutenticacao {
 		if(!usuario.isPresent()) {
 			throw new ErroAutenticacao(ConstantesUtils.USUARIO_NAO_ENCONTRADO);
 		}
@@ -36,7 +40,6 @@ public class UsuarioService {
 		if(!senhasBatem) {
 			throw new ErroAutenticacao(ConstantesUtils.SENHA_INVALIDA);
 		}
-		return usuario.get();
 	}
 	
 	public Page<UsuarioResponse> findAll(Pageable pageable) {
