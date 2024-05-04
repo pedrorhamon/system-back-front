@@ -8,7 +8,6 @@ import java.util.Date;
 
 import org.springframework.stereotype.Service;
 
-import com.starking.systemback.model.Usuario;
 import com.starking.systemback.model.response.UsuarioResponse;
 
 import io.jsonwebtoken.Claims;
