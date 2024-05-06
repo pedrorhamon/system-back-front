@@ -48,6 +48,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		return new JwtTokenFilter(jwtService, userDetailsService);
 	}
 	
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth
+			.userDetailsService(userDetailsService)
+			.passwordEncoder(passwordEncoder());
+	}
+	
 	@Bean
 	public FilterRegistrationBean<CorsFilter> corsFilter(){
 		
