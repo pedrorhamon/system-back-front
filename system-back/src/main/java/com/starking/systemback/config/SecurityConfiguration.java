@@ -55,6 +55,23 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.passwordEncoder(passwordEncoder());
 	}
 	
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http
+			.csrf().disable()
+			.authorizeRequests()
+				.requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
+				.antMatchers(HttpMethod.GET, "/**").permitAll()
+				.antMatchers(HttpMethod.POST, "/api/usuarios/autenticar").permitAll()
+				.antMatchers(HttpMethod.POST, "/api/usuarios").permitAll()
+				.anyRequest().authenticated()	
+		.and()
+			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+		.and()
+			.addFilterBefore( jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class )
+			;
+	}
+	
 	@Bean
 	public FilterRegistrationBean<CorsFilter> corsFilter(){
 		
