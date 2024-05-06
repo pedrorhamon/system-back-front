@@ -17,9 +17,12 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import com.starking.systemback.services.JwtService;
 import com.starking.systemback.services.SecurityUserDetailsService;
 
+import lombok.AllArgsConstructor;
+
 /**
  * @author pedroRhamon
  */
+@AllArgsConstructor
 public class JwtTokenFilter extends OncePerRequestFilter {
 	
 	@Autowired
