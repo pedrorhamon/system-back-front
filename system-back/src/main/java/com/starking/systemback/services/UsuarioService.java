@@ -47,6 +47,21 @@ public class UsuarioService {
 		return this.usuarioRepository.findById(id).map(UsuarioResponse::new);
 	}
 	
+	public UsuarioResponse atualizarUsuario(Long id, Usuario usuarioAtualizado) throws RegraNegocioException {
+        Usuario usuarioExistente = usuarioRepository.findById(id)
+                .orElseThrow(() -> new RegraNegocioException(ConstantesUtils.USUARIO_NAO_ENCONTRADO_ID));
+
+        // Atualiza os dados do usuário existente com os novos dados do usuárioAtualizado
+        usuarioExistente.setName(usuarioAtualizado.getName());
+        usuarioExistente.setEmail(usuarioAtualizado.getEmail());
+        usuarioExistente.setCpf(usuarioAtualizado.getCpf());
+        usuarioExistente.setPerfis(usuarioAtualizado.getPerfis());
+        criptografarSenha(usuarioExistente); // Se necessário
+
+        // Salva e retorna o usuário atualizado
+        return new UsuarioResponse(usuarioRepository.save(usuarioExistente));
+    }
+	
 	public Usuario autenticar(String email, String senha) throws ErroAutenticacao {
 		Optional<Usuario> usuario = this.usuarioRepository.findByEmail(email);
 		this.autenticacaoSenha(senha, usuario);
