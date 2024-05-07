@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import com.starking.systemback.model.Usuario;
 import com.starking.systemback.repositories.UsuarioRepository;
@@ -12,6 +13,7 @@ import com.starking.systemback.repositories.UsuarioRepository;
 /**
  * @author pedroRhamon
  */
+@Service
 public class SecurityUserDetailsService implements UserDetailsService{
 	
 	@Autowired
