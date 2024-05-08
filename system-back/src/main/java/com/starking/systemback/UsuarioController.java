@@ -60,7 +60,7 @@ public class UsuarioController {
 
 	@PostMapping("/autenticar")
 	public ResponseEntity<?> autenticar(@RequestBody Usuario usuario) throws ErroAutenticacao {
-		usuarioService.autenticar(usuario.getEmail(), usuario.getSenha());
+		this.usuarioService.autenticar(usuario.getEmail(), usuario.getSenha());
 		String token = jwtService.gerarToken(usuario);
 		TokenResponse tokenResponse = new TokenResponse(usuario.getName(), token);
 		return ResponseEntity.ok(tokenResponse);
