@@ -90,4 +90,8 @@ public class UsuarioService {
 		String senhaCripto = encoder.encode(senha);
 		usuario.setSenha(senhaCripto);
 	}
+	
+	public void deletarUsuario(Long id) {
+		this.usuarioRepository.deleteById(id);
+	}
 }
