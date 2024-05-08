@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.starking.systemback.model.Usuario;
-import com.starking.systemback.model.request.UsuarioRequest;
+import com.starking.systemback.model.response.TokenResponse;
 import com.starking.systemback.model.response.UsuarioResponse;
 import com.starking.systemback.services.ErroAutenticacao;
 import com.starking.systemback.services.JwtService;
@@ -62,7 +62,8 @@ public class UsuarioController {
 	public ResponseEntity<?> autenticar(@RequestBody Usuario usuario) throws ErroAutenticacao {
 		usuarioService.autenticar(usuario.getEmail(), usuario.getSenha());
 		String token = jwtService.gerarToken(usuario);
-		 ResponseEntity.ok();
+		TokenResponse tokenResponse = new TokenResponse(usuario.getName(), token);
+		return ResponseEntity.ok(tokenResponse);
 	}
 	
 	@DeleteMapping("/{id}")
