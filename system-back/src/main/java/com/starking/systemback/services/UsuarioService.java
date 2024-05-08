@@ -91,6 +91,7 @@ public class UsuarioService {
 		usuario.setSenha(senhaCripto);
 	}
 	
+	@Transactional
 	public void deletarUsuario(Long id) {
 		this.usuarioRepository.deleteById(id);
 	}
