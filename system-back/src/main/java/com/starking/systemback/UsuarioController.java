@@ -59,8 +59,10 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/autenticar")
-	public ResponseEntity<?> autenticar(@RequestBody UsuarioRequest usuarioRequest) throws ErroAutenticacao {
-		return ResponseEntity.ok(usuarioService.autenticar(usuarioRequest.getEmail(), usuarioRequest.getSenha()));
+	public ResponseEntity<?> autenticar(@RequestBody Usuario usuario) throws ErroAutenticacao {
+		usuarioService.autenticar(usuario.getEmail(), usuario.getSenha());
+		String token = jwtService.gerarToken(usuario);
+		 ResponseEntity.ok();
 	}
 	
 	@DeleteMapping("/{id}")
