@@ -9,7 +9,7 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.starking.systemback.model.response.UsuarioResponse;
+import com.starking.systemback.model.Usuario;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -29,7 +29,7 @@ public class JwtService {
 	@Value("${jwt.expiracao}")
 	private String expiracao; 
 	
-	public String gerarToken(UsuarioResponse usuarioResponse) {
+	public String gerarToken(Usuario usuario) {
 		long exp = Long.valueOf(expiracao);
 		LocalDateTime dataHoraExpiracao = LocalDateTime.now().plusMinutes(exp);
 		Instant instant = dataHoraExpiracao.atZone( ZoneId.systemDefault() ).toInstant();
@@ -41,9 +41,9 @@ public class JwtService {
 		String token = Jwts
 							.builder()
 							.setExpiration(data)
-							.setSubject(usuarioResponse.getEmail())
-							.claim("userid", usuarioResponse.getId())
-							.claim("nome", usuarioResponse.getName())
+							.setSubject(usuario.getEmail())
+							.claim("userid", usuario.getId())
+							.claim("nome", usuario.getName())
 							.claim("horaExpiracao", horaExpiracaoToken)
 							.signWith( SignatureAlgorithm.HS512 , chaveAssinatura )
 							.compact();
