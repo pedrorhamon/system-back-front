@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.starking.systemback.model.Usuario;
+import com.starking.systemback.model.request.UsuarioRequest;
 import com.starking.systemback.model.response.UsuarioResponse;
+import com.starking.systemback.services.ErroAutenticacao;
 import com.starking.systemback.services.JwtService;
 import com.starking.systemback.services.UsuarioService;
 
@@ -34,7 +36,7 @@ public class UsuarioController {
 	private JwtService jwtService;
 	
 	@PostMapping
-	public ResponseEntity<UsuarioResponse> salvarUsuario(@RequestBody @Valid Usuario usuario) throws RegraNegocioException {
+	public ResponseEntity<?> salvarUsuario(@RequestBody @Valid Usuario usuario) throws RegraNegocioException {
 			return ResponseEntity.status(HttpStatus.CREATED).body(this.usuarioService.salvarUsuario(usuario));
 	}
 	
@@ -46,6 +48,11 @@ public class UsuarioController {
 	@GetMapping("/{id}")
 	public ResponseEntity<?>obterPorId( @PathVariable("id") Long id ) {
 		return ResponseEntity.ok().body(this.usuarioService.obterPorId(id).get());
+	}
+	
+	@PostMapping("/autenticar")
+	public ResponseEntity<?> autenticar(@RequestBody UsuarioRequest usuarioRequest) throws ErroAutenticacao {
+		return ResponseEntity.ok(usuarioService.autenticar(usuarioRequest.getEmail(), usuarioRequest.getSenha()));
 	}
 
 }
