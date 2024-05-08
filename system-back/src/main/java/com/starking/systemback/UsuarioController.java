@@ -64,7 +64,7 @@ public class UsuarioController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> deletarUsuario(@PathVariable("id") Long id) throws ErroAutenticacao {
+	public ResponseEntity<?> deletarUsuario(@PathVariable("id") Long id) throws RegraNegocioException {
 		this.usuarioService.deletarUsuario(id);
 		return ResponseEntity.noContent().build();
 	}
