@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../usuario/usuario.service';
 import { Usuario } from '../../model/Usuario';
 
@@ -7,9 +7,13 @@ import { Usuario } from '../../model/Usuario';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
   constructor(private usuarioService: UsuarioService) { }
+
+  ngOnInit(): void {
+    this.buscarTodos();
+  }
 
   buscarTodos() {
     this.usuarioService.findAll().subscribe(
