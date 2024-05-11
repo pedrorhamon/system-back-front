@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../usuario/usuario.service';
 import { Usuario } from '../../model/Usuario';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -9,11 +10,18 @@ import { Usuario } from '../../model/Usuario';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private usuarioService: UsuarioService) { }
+  constructor(private formBuilder: FormBuilder, private usuarioService: UsuarioService) { }
 
   ngOnInit(): void {
     this.buscarTodos();
+
+    this.formBuilder.group({
+      name: [''],
+      email: ['']
+    })
+
   }
+
 
   buscarTodos() {
     this.usuarioService.findAll().subscribe(
