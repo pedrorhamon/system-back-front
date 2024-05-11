@@ -17,7 +17,11 @@ export class LoginComponent implements OnInit {
 
     this.formBuilder.group({
       name: [''],
-      email: ['']
+      email: [''],
+      cpf: [''],
+      isAtivo: [Boolean],
+      perfil: ['']
+
     })
 
   }

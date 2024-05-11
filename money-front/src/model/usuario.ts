@@ -5,4 +5,5 @@ export interface Usuario {
   cpf: string;
   isAtivo: boolean;
   perfil: string;
+  senha: string;
 }
