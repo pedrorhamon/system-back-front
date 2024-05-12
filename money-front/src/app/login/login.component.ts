@@ -10,7 +10,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  loginForm!: FormGroup;
+  form!: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private usuarioService: UsuarioService) { }
 
@@ -41,8 +41,8 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.loginForm.valid) {
-      const usuario = this.loginForm.value;
+    if (this.form.valid) {
+      const usuario = this.form.value;
       this.usuarioService.salvarUsuario(usuario)
         .subscribe(
           (response: any) => {
