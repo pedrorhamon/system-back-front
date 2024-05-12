@@ -24,7 +24,6 @@ export class UsuarioService {
     return this.httpClient.get<Usuario>(`${this.baseUrl}`);
   }
 
-
   private handleError(error: any): Observable<any> {
     console.error('Ocorreu um erro:', error);
     return throwError(error);

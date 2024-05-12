@@ -10,6 +10,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
+  loginForm!: FormGroup;
+
   constructor(private formBuilder: FormBuilder, private usuarioService: UsuarioService) { }
 
   ngOnInit(): void {
@@ -36,6 +38,21 @@ export class LoginComponent implements OnInit {
       console.error('Erro ao buscar usuários:', error);
     }
   )
+  }
+
+  onSubmit(): void {
+    if (this.loginForm.valid) {
+      const usuario = this.loginForm.value;
+      this.usuarioService.salvarUsuario(usuario)
+        .subscribe(
+          (response: any) => {
+            console.log('Usuário salvo com sucesso:', response);
+          },
+          error => {
+            console.error('Erro ao salvar usuário:', error);
+          }
+        );
+    }
   }
 
 }
