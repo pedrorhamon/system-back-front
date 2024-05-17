@@ -1,2 +1,2 @@
 # Backend and frontend
-java 17
+spring boot java 17 e angular 
