@@ -1,4 +1,4 @@
-package com.starking.systemback;
+package com.starking.systemback.controllers;
 
 import javax.validation.Valid;
 
@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.starking.systemback.exception.RegraNegocioException;
 import com.starking.systemback.model.Usuario;
 import com.starking.systemback.model.response.TokenResponse;
 import com.starking.systemback.model.response.UsuarioResponse;

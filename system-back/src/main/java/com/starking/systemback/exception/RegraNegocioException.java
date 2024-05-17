@@ -1,4 +1,4 @@
-package com.starking.systemback;
+package com.starking.systemback.exception;
 
 /**
  * @author pedroRhamon
