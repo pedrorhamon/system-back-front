@@ -1,6 +1,7 @@
 package com.starking.systemback.services;
 
 import java.time.Instant;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
@@ -30,5 +31,9 @@ public class RefreshTokenService {
 				.expiryDate(Instant.now().plusMillis(600000)) // set expiry of refresh token to 10 minutes - you can configure it application.properties file 
 				.build();
 		return this.refreshTokenRepository.save(refreshToken);
+	}
+	
+	public Optional<RefreshToken> findByToken(String token) {
+		return this.refreshTokenRepository.findByToken(token);
 	}
 }
