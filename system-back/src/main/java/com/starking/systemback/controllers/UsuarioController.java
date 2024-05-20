@@ -65,14 +65,19 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/autenticar")
-	public ResponseEntity<?> autenticar(@RequestBody Usuario usuario) throws ErroAutenticacao {
+	public ResponseEntity<TokenResponse> autenticar(@RequestBody Usuario usuario) throws ErroAutenticacao {
 		Usuario autenticar = this.usuarioService.autenticar(usuario.getEmail(), usuario.getSenha());
 		if(autenticar.isAtivo()) {
 			String token = jwtService.gerarToken(usuario);
 			TokenResponse tokenResponse = new TokenResponse(usuario.getName(), token);
-			RefreshToken refreshToken = this.refreshToken.
+			RefreshToken refreshToken = this.refreshTokenService.createRefreshToken(usuario.getEmail());
+			return ResponseEntity.ok(TokenResponse.builder()
+					.nome(this.jwtService.gerarToken(usuario))
+					.token(tokenResponse.getToken())
+					.build());
+		} else {
+			return ResponseEntity.internalServerError().build();
 		}
-		return ResponseEntity.ok(tokenResponse);
 	}
 	
 	@DeleteMapping("/{id}")
