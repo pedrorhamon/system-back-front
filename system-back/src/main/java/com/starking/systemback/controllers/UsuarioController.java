@@ -24,6 +24,7 @@ import com.starking.systemback.model.response.TokenResponse;
 import com.starking.systemback.model.response.UsuarioResponse;
 import com.starking.systemback.services.ErroAutenticacao;
 import com.starking.systemback.services.JwtService;
+import com.starking.systemback.services.RefreshTokenService;
 import com.starking.systemback.services.UsuarioService;
 
 /**
@@ -41,7 +42,7 @@ public class UsuarioController {
 	private JwtService jwtService;
 	
 	@Autowired
-	private RefreshToken refreshToken;
+	private RefreshTokenService refreshTokenService;
 
 	@PostMapping
 	public ResponseEntity<?> salvarUsuario(@RequestBody @Valid Usuario usuario) throws RegraNegocioException {
@@ -69,7 +70,7 @@ public class UsuarioController {
 		if(autenticar.isAtivo()) {
 			String token = jwtService.gerarToken(usuario);
 			TokenResponse tokenResponse = new TokenResponse(usuario.getName(), token);
-			RefreshToken refreshToken = this.refreshToken
+			RefreshToken refreshToken = this.refreshToken.
 		}
 		return ResponseEntity.ok(tokenResponse);
 	}
