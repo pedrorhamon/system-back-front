@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.starking.systemback.exception.RegraNegocioException;
+import com.starking.systemback.model.RefreshToken;
 import com.starking.systemback.model.Usuario;
 import com.starking.systemback.model.response.TokenResponse;
 import com.starking.systemback.model.response.UsuarioResponse;
@@ -38,6 +39,9 @@ public class UsuarioController {
 
 	@Autowired
 	private JwtService jwtService;
+	
+	@Autowired
+	private RefreshToken refreshToken;
 
 	@PostMapping
 	public ResponseEntity<?> salvarUsuario(@RequestBody @Valid Usuario usuario) throws RegraNegocioException {
@@ -61,9 +65,12 @@ public class UsuarioController {
 
 	@PostMapping("/autenticar")
 	public ResponseEntity<?> autenticar(@RequestBody Usuario usuario) throws ErroAutenticacao {
-		this.usuarioService.autenticar(usuario.getEmail(), usuario.getSenha());
-		String token = jwtService.gerarToken(usuario);
-		TokenResponse tokenResponse = new TokenResponse(usuario.getName(), token);
+		Usuario autenticar = this.usuarioService.autenticar(usuario.getEmail(), usuario.getSenha());
+		if(autenticar.isAtivo()) {
+			String token = jwtService.gerarToken(usuario);
+			TokenResponse tokenResponse = new TokenResponse(usuario.getName(), token);
+			RefreshToken refreshToken = this.refreshToken
+		}
 		return ResponseEntity.ok(tokenResponse);
 	}
 	
