@@ -30,11 +30,11 @@ public class RefreshTokenController {
 	public TokenResponse refreshToken(@RequestBody RefreshTokenRequest refreshTokenRequestDTO){
 	    return refreshTokenService.findByToken(refreshTokenRequestDTO.getToken())
 	            .map(refreshTokenService::verifyExpiration)
-	            .map(RefreshToken::getUserInfo)
+	            .map(RefreshToken::getUsuario)
 	            .map(userInfo -> {
-	                String accessToken = jwtService.GenerateToken(userInfo.getUsername());
-	                return JwtResponseDTO.builder()
-	                        .accessToken(accessToken)
+	                String accessToken = this.jwtService.gerarToken(userInfo);
+	                return TokenResponse.builder()
+	                        .nome(accessToken)
 	                        .token(refreshTokenRequestDTO.getToken()).build();
 	            }).orElseThrow(() ->new RuntimeException("Refresh Token is not in DB..!!"));
 	}
