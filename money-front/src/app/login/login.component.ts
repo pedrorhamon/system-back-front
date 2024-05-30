@@ -1,6 +1,6 @@
+import { Usuario } from './../../model/usuario';
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../usuario/usuario.service';
-import { Usuario } from '../../model/Usuario';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
