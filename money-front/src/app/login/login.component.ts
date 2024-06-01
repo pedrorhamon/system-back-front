@@ -11,6 +11,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   form!: FormGroup;
+  isUpdating: boolean = false;
+  currentUser: Usuario = new Usuario();
 
   constructor(private formBuilder: FormBuilder, private usuarioService: UsuarioService) { }
 
