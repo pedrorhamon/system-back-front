@@ -69,4 +69,17 @@ export class LoginComponent implements OnInit {
       }
     }
   }
+
+  loadUserForEdit(userId: number): void {
+    this.usuarioService.getUsuarioById(userId).subscribe(
+      (usuario: Usuario) => {
+        this.currentUser = usuario;
+        this.form.patchValue(usuario);
+        this.isUpdating = true;
+      },
+      error => {
+        console.error('Erro ao carregar usuário:', error);
+      }
+    );
+  }
 }
