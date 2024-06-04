@@ -28,7 +28,9 @@ export class UsuarioService {
       );
   }
 
-
+  getUsuarioById(userId: number) {
+    return this.httpClient.get<Usuario>(`${this.baseUrl}.${userId}`);
+  }
 
   findAll() {
     return this.httpClient.get<Usuario>(`${this.baseUrl}`);
