@@ -32,6 +32,10 @@ export class UsuarioService {
     return this.httpClient.get<Usuario>(`${this.baseUrl}.${userId}`);
   }
 
+  deleteUsuario(userId: number) {
+    return this.httpClient.delete<Usuario>(`${this.baseUrl}.${userId}`);
+  }
+
   findAll() {
     return this.httpClient.get<Usuario>(`${this.baseUrl}`);
   }
