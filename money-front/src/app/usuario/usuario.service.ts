@@ -40,6 +40,10 @@ export class UsuarioService {
     return this.httpClient.get<Usuario>(`${this.baseUrl}`);
   }
 
+  autenticar(usuario: Usuario): Observable<TokenResponse> {
+    return this.httpClient.post<TokenResponse>(this.baseUrl, usuario);
+  }
+
   private handleError(error: any): Observable<any> {
     console.error('Ocorreu um erro:', error);
     return throwError(error);
