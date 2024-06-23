@@ -31,6 +31,18 @@ export class LoginComponent implements OnInit {
 
   }
 
+  onLogin() {
+    this.usuarioService.autenticar({ email: this.email, senha: this.senha }).subscribe(
+      response => {
+        localStorage.setItem('token', response.token);
+        this.router.navigate(['/dashboard']);
+      },
+      error => {
+        this.errorMessage = 'Erro de autenticação. Por favor, verifique suas credenciais.';
+      }
+    );
+  }
+
 
   buscarTodos() {
     this.usuarioService.findAll().subscribe(
