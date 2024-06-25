@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   form!: FormGroup;
   isUpdating: boolean = false;
   currentUser: Usuario = new Usuario();
+  errorMessage: string = '';
 
   constructor(private formBuilder: FormBuilder, private usuarioService: UsuarioService) { }
 
@@ -32,10 +33,10 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-    this.usuarioService.autenticar({ email: this.email, senha: this.senha }).subscribe(
+    this.usuarioService.autenticar(this.currentUser).subscribe(
       response => {
         localStorage.setItem('token', response.token);
-        this.router.navigate(['/dashboard']);
+        // this.router.navigate(['/dashboard']);
       },
       error => {
         this.errorMessage = 'Erro de autenticação. Por favor, verifique suas credenciais.';
