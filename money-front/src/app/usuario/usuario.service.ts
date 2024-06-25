@@ -41,7 +41,7 @@ export class UsuarioService {
   }
 
   autenticar(usuario: Usuario): Observable<TokenResponse> {
-    return this.httpClient.post<TokenResponse>(this.baseUrl, usuario);
+    return this.httpClient.post<TokenResponse>(`${this.baseUrl}/autenticar`, usuario);
   }
 
   private handleError(error: any): Observable<any> {
