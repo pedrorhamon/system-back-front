@@ -21,13 +21,8 @@ export class LoginComponent implements OnInit {
     this.buscarTodos();
 
     this.formBuilder.group({
-      id:[],
       name: [''],
-      email: [''],
-      cpf: [''],
-      isAtivo: [Boolean],
-      perfil: ['']
-
+      email: ['']
     })
 
   }
@@ -36,7 +31,6 @@ export class LoginComponent implements OnInit {
     this.usuarioService.autenticar(this.currentUser).subscribe(
       response => {
         localStorage.setItem('token', response.token);
-        // this.router.navigate(['/dashboard']);
       },
       error => {
         this.errorMessage = 'Erro de autenticação. Por favor, verifique suas credenciais.';
