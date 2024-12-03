@@ -1,2 +1,2 @@
 # Backend and frontend
-spring boot java 17 lambdas e angular
+spring boot java 17 angular
