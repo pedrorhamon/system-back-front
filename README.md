@@ -1,2 +1,2 @@
 # Backend and frontend
-spring boot and angular
+spring boot in java and angular
