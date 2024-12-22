@@ -1,2 +1,2 @@
 # Backend and frontend
-spring boot in java 21 and angular
+spring boot in java and angular
